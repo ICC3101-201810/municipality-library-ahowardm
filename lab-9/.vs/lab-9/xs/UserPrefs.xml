@@ -1,6 +1,10 @@
 ﻿<Properties StartupConfiguration="{A8583DA8-D5F3-494D-B033-DB662D2DDB92}|Default">
   <MonoDevelop.Ide.ItemProperties.lab-9 PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="lab-9/Program.cs">
+    <Files>
+      <File FileName="lab-9/Program.cs" Line="22" Column="5" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
