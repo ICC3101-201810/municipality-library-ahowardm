@@ -25,36 +25,42 @@ namespace lab_9
       Console.WriteLine("Desea escanear ClassLibrary1.dll? (s/n)");
       if (Console.ReadLine() == "s")
         ScanDLL();
-      else{
+      else
+      {
         Program temp = new Program();
         temp.Lab9();
       }
     }
 
-    public Program(){
-      
-      menuRegistroCivil = new List<String>() { "Inscribir persona", "Inscribir propiedad", "Inscribir automóvil", "Mostrar las personas", "Salir" };
+    public Program()
+    {
+
+      menuRegistroCivil = new List<String>() { "Inscribir persona", "Inscribir propiedad", "Inscribir automóvil", "Mostrar las personas", "Mostrar las propiedades", "Mostrar los autos", "Salir" };
       optionMenu = CreateList(menuRegistroCivil.Count);
-      menuOption = new menu[] { InscribirPersona, InscribirPropiedad, InscribirAuto, ShowPeople };
+      menuOption = new menu[] { InscribirPersona, InscribirPropiedad, InscribirAuto, ShowPeople, ShowAddresses, ShowCars };
       primeraPersona = 1;
       people = new List<ClassLibrary1.Person>();
       addresses = new List<ClassLibrary1.Address>();
       cars = new List<ClassLibrary1.Car>();
     }
 
-    public void Lab9(){
+    public void Lab9()
+    {
       int option = LoadMenu(menuRegistroCivil);
-      while(option != menuOption.Length){
+      while (option != menuOption.Length)
+      {
         if (option >= menuOption.Length)
           Console.WriteLine("Opción no permitida.");
-        else{
+        else
+        {
           menuOption[option]();
         }
         option = LoadMenu(menuRegistroCivil);
       }
     }
 
-    public int LoadMenu(List<String> menuRegistroCivil){
+    public int LoadMenu(List<String> menuRegistroCivil)
+    {
       int i = 1;
       Console.WriteLine("Seleccione una opción:");
       foreach (String index in menuRegistroCivil)
@@ -62,7 +68,9 @@ namespace lab_9
       return Int32.Parse(Console.ReadLine()) - 1;
     }
 
-    void InscribirPersona(){
+    void InscribirPersona()
+    {
+      Console.WriteLine("Inscripción de personas");
       Console.Write("Ingrese el nombre de la persona ");
       String first_name = Console.ReadLine();
       Console.Write("Ingrese el apellido de la persona ");
@@ -76,7 +84,8 @@ namespace lab_9
       Console.Write("Ingrese el dia de nacimiento ");
       int dia = Int32.Parse(Console.ReadLine());
       DateTime birth_date = new DateTime(ano, mes, dia);
-      if (primeraPersona == 1){
+      if (primeraPersona == 1)
+      {
         // No tiene parents
         people.Add(new ClassLibrary1.Person(first_name, last_name, birth_date, null, rut, null, null));
       }
@@ -84,7 +93,9 @@ namespace lab_9
         people.Add(new ClassLibrary1.Person(first_name, last_name, birth_date, null, rut, null, null));
     }
 
-    void InscribirPropiedad(){
+    void InscribirPropiedad()
+    {
+      Console.WriteLine("Inscripción de propiedades");
       Console.Write("Ingrese la calle ");
       String street = Console.ReadLine();
       Console.Write("Ingrese el número ");
@@ -110,17 +121,52 @@ namespace lab_9
       addresses.Add(new ClassLibrary1.Address(street, nro, commune, city, null, year_of_construction, bedrooms, bathrooms, backyard, pool));
     }
 
-    void InscribirAuto(){
-      
+    void InscribirAuto()
+    {
+      Console.Write("Inscripción de automóviles");
+      Console.Write("Ingrese la marca ");
+      String brand = Console.ReadLine();
+      Console.Write("Ingrese el modelo ");
+      String model = Console.ReadLine();
+      Console.Write("Ingrese el año ");
+      int ano = Int32.Parse(Console.ReadLine());
+      Console.Write("Ingrese la patente ");
+      String license_plate = Console.ReadLine();
+      Console.Write("Ingrese la cantidad de cinturones de seguridad ");
+      int seatbelts = Int32.Parse(Console.ReadLine());
+      Console.Write("Es diesel? (s/n)");
+      Boolean diesel = false;
+      if (Console.ReadLine() == "s")
+        diesel = true;
+      cars.Add(new ClassLibrary1.Car(brand, model, ano, null, license_plate, seatbelts, diesel));
     }
 
-    private void ShowPeople(){
-      foreach(ClassLibrary1.Person p in people){
+    private void ShowPeople()
+    {
+      foreach (ClassLibrary1.Person p in people)
+      {
         Console.WriteLine(p.First_name + " " + p.Last_name);
       }
     }
 
-    private List<Boolean> CreateList(int Length){
+    private void ShowCars()
+    {
+      foreach (ClassLibrary1.Car c in cars)
+      {
+        Console.WriteLine(c.Brand + " " + c.Model);
+      }
+    }
+
+    private void ShowAddresses()
+    {
+      foreach (ClassLibrary1.Address a in addresses)
+      {
+        Console.WriteLine(a.Street + " " + a.Number);
+      }
+    }
+
+    private List<Boolean> CreateList(int Length)
+    {
       List<Boolean> options = new List<bool>(Length);
       for (int i = 0; i < Length; i++)
         options.Add(false);
